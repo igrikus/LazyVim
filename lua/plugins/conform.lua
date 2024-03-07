@@ -1,8 +1,12 @@
--- return {
---   "stevearc/conform.nvim",
---   opts = {
---     formatters_by_ft = {
---       yaml = { "yamlfmt" },
---     },
---   },
--- }
+return {
+  "stevearc/conform.nvim",
+  opts = {
+    formatters = {
+      prettier = {
+        condition = function()
+          return vim.bo.filetype ~= "yaml"
+        end,
+      },
+    },
+  },
+}
