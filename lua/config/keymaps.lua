@@ -3,3 +3,7 @@
 -- Add any additional keymaps here
 
 vim.keymap.del("t", "<C-l>") -- Clear terminal with Ctrl+l
+
+vim.keymap.set({ "n", "v" }, "x", '"_x') -- Don't yank when cutting
+vim.keymap.set({ "n", "v" }, "d", '"_d') -- Don't yank when deleting
+vim.keymap.set({ "n", "v" }, "c", '"_c') -- Don't yank when changing
