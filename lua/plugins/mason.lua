@@ -6,6 +6,9 @@ return {
       "bash-language-server",
       "shellcheck",
       "shfmt",
+
+      -- PowerShell
+      "powershell-editor-services",
     },
   },
 }
