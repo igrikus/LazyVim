@@ -9,6 +9,9 @@ return {
 
       -- PowerShell
       "powershell-editor-services",
+
+      -- HashiCorp
+      "hclfmt",
     },
   },
 }
