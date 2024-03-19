@@ -8,5 +8,8 @@ return {
         end,
       },
     },
+    formatters_by_ft = {
+      hcl = { "hclfmt" },
+    },
   },
 }
