@@ -29,7 +29,8 @@
     "sh",
     "ps1",
     "json",
-    "yaml"
+    "yaml",
+    "txt"
   ],
   "localKeys": [
     {
