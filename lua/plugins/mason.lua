@@ -12,6 +12,9 @@ return {
 
       -- HashiCorp
       "hclfmt",
+
+      -- Markdown
+      "markdownlint",
     },
   },
 }
