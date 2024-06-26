@@ -99,7 +99,7 @@ return {
 
           if git_file_url then
             table.insert(results, git_file_url)
-            table.insert(choices, "7. Git repository file URL: " .. git_file_url)
+            table.insert(choices, "7. Git repo URL: " .. git_file_url)
           end
 
           vim.ui.select(choices, { prompt = "Choose to copy to clipboard:" }, function(choice)
