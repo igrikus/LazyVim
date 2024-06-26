@@ -38,16 +38,15 @@ return {
           local filename = node.name
           local modify = vim.fn.fnamemodify
 
-          -- Function to check if the directory is a Git repository
-          local function is_git_repo()
-            local git_dir = vim.fn.finddir(".git", ".;")
-            return git_dir ~= ""
-          end
-
           -- Function to get git repository URL
           local function get_git_repo_url()
             local git_remote_output = vim.fn.systemlist("git config --get remote.origin.url")[1]
             return git_remote_output
+          end
+
+          local function is_git_repo()
+            local git_remote_output = get_git_repo_url()
+            return git_remote_output and git_remote_output ~= ""
           end
 
           -- Function to get current branch name
