@@ -38,6 +38,36 @@ return {
           local filename = node.name
           local modify = vim.fn.fnamemodify
 
+          -- Function to get git repository URL
+          local function get_git_repo_url()
+            local git_remote_output = vim.fn.systemlist("git config --get remote.origin.url")[1]
+            return git_remote_output
+          end
+
+          -- Function to get current branch name
+          local function get_git_branch()
+            local git_branch_output = vim.fn.systemlist("git rev-parse --abbrev-ref HEAD")[1]
+            return git_branch_output
+          end
+
+          -- Function to create file URL in git repository
+          local function create_git_file_url(repo_url, branch, file_path)
+            -- Convert repo URL to https if it's ssh
+            if repo_url:match("^git@") then
+              repo_url = repo_url:gsub(":", "/"):gsub("^git@", "https://")
+            elseif repo_url:match("^ssh://") then
+              repo_url = repo_url:gsub("^ssh://git@", "https://")
+              repo_url = repo_url:gsub(":%d+/", "/") -- Remove the port number
+            end
+            repo_url = repo_url:gsub("%.git$", "") -- Remove .git suffix if exists
+            return string.format("%s/blob/%s/%s", repo_url, branch, file_path)
+          end
+
+          -- Get git information
+          local git_repo_url = get_git_repo_url()
+          local git_branch = get_git_branch()
+          local git_file_url = create_git_file_url(git_repo_url, git_branch, modify(filepath, ":."))
+
           local results = {
             filepath,
             modify(filepath, ":."),
@@ -45,6 +75,7 @@ return {
             filename,
             modify(filename, ":r"),
             modify(filename, ":e"),
+            git_file_url,
           }
 
           vim.ui.select({
@@ -54,6 +85,7 @@ return {
             "4. Filename: " .. results[4],
             "5. Filename without extension: " .. results[5],
             "6. Extension of the filename: " .. results[6],
+            "7. Git repo file URL: " .. results[7],
           }, { prompt = "Choose to copy to clipboard:" }, function(choice)
             local i = tonumber(choice:sub(1, 1))
             local result = results[i]
