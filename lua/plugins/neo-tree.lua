@@ -38,6 +38,12 @@ return {
           local filename = node.name
           local modify = vim.fn.fnamemodify
 
+          -- Function to check if the directory is a Git repository
+          local function is_git_repo()
+            local git_dir = vim.fn.finddir(".git", ".;")
+            return git_dir ~= ""
+          end
+
           -- Function to get git repository URL
           local function get_git_repo_url()
             local git_remote_output = vim.fn.systemlist("git config --get remote.origin.url")[1]
@@ -63,10 +69,16 @@ return {
             return string.format("%s/blob/%s/%s", repo_url, branch, file_path)
           end
 
-          -- Get git information
-          local git_repo_url = get_git_repo_url()
-          local git_branch = get_git_branch()
-          local git_file_url = create_git_file_url(git_repo_url, git_branch, modify(filepath, ":."))
+          -- Determine if we can get Git information
+          local git_repo_url = nil
+          local git_branch = nil
+          local git_file_url = nil
+
+          if is_git_repo() then
+            git_repo_url = get_git_repo_url()
+            git_branch = get_git_branch()
+            git_file_url = create_git_file_url(git_repo_url, git_branch, modify(filepath, ":."))
+          end
 
           local results = {
             filepath,
@@ -75,18 +87,23 @@ return {
             filename,
             modify(filename, ":r"),
             modify(filename, ":e"),
-            git_file_url,
           }
 
-          vim.ui.select({
+          local choices = {
             "1. Absolute path: " .. results[1],
             "2. Path relative to CWD: " .. results[2],
             "3. Path relative to HOME: " .. results[3],
             "4. Filename: " .. results[4],
             "5. Filename without extension: " .. results[5],
             "6. Extension of the filename: " .. results[6],
-            "7. Git repo file URL: " .. results[7],
-          }, { prompt = "Choose to copy to clipboard:" }, function(choice)
+          }
+
+          if git_file_url then
+            table.insert(results, git_file_url)
+            table.insert(choices, "7. Git repository file URL: " .. git_file_url)
+          end
+
+          vim.ui.select(choices, { prompt = "Choose to copy to clipboard:" }, function(choice)
             local i = tonumber(choice:sub(1, 1))
             local result = results[i]
             vim.fn.setreg("+", result)
