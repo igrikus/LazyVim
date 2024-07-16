@@ -4,7 +4,6 @@ return {
   opts = {
     settings = {
       options = {
-        debug = true,
         require_lsp_activation = false,
         cached_venv_automatic_activation = false,
       },
