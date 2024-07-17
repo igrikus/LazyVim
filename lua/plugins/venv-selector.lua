@@ -1,18 +1,20 @@
 return {
   "linux-cultist/venv-selector.nvim",
-  lazy = false,
-  opts = {
-    settings = {
-      options = {
-        require_lsp_activation = false,
-        cached_venv_automatic_activation = false,
+  branch = "main",
+  commit = "2ad34f36d498ff5193ea10f79c87688bd5284172",
+  cmd = "VenvSelect",
+  opts = function(_, opts)
+    if LazyVim.has("nvim-dap-python") then
+      opts.dap_enabled = true
+    end
+    return vim.tbl_deep_extend("force", opts, {
+      name = {
+        "venv",
+        ".venv",
+        "env",
+        ".env",
       },
-    },
-  },
-
-  -- By default plugin activates only when python file is opened. I need to activate it globally
-  ft = function(_, _)
-    return {}
+    })
   end,
-  keys = { { "<leader>cv", false } },
+  keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
 }
