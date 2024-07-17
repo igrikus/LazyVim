@@ -14,6 +14,7 @@ return {
         "env",
         ".env",
       },
+      notify_user_on_activate = false,
     })
   end,
   keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
