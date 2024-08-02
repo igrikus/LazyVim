@@ -84,8 +84,7 @@ return {
             modify(filepath, ":."),
             modify(filepath, ":~"),
             filename,
-            modify(filename, ":r"),
-            modify(filename, ":e"),
+            modify(filepath, ":h"),
           }
 
           local choices = {
@@ -93,13 +92,12 @@ return {
             "2. Path relative to CWD: " .. results[2],
             "3. Path relative to HOME: " .. results[3],
             "4. Filename: " .. results[4],
-            "5. Filename without extension: " .. results[5],
-            "6. Extension of the filename: " .. results[6],
+            "5. Directory: " .. results[5],
           }
 
           if git_file_url then
             table.insert(results, git_file_url)
-            table.insert(choices, "7. Git repo URL: " .. git_file_url)
+            table.insert(choices, "6. Git repo URL: " .. git_file_url)
           end
 
           vim.ui.select(choices, { prompt = "Choose to copy to clipboard:" }, function(choice)
