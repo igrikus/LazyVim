@@ -12,3 +12,27 @@ vim.keymap.set({ "n", "v" }, "D", '"_D')
 
 vim.keymap.set({ "n", "v" }, "c", '"_c') -- Don't yank when changing
 vim.keymap.set({ "n", "v" }, "C", '"_C')
+
+local function compare_to_clipboard()
+  local ftype = vim.api.nvim_eval("&filetype")
+  vim.cmd(string.format(
+    [[
+    execute "normal! \"xy"
+    vsplit
+    enew
+    normal! P
+    setlocal buftype=nowrite
+    set filetype=%s
+    diffthis
+    execute "normal! \<C-w>\<C-w>"
+    enew
+    set filetype=%s
+    normal! "xP
+    diffthis
+  ]],
+    ftype,
+    ftype
+  ))
+end
+
+vim.keymap.set("x", "<Space>ghc", compare_to_clipboard, { desc = "Compare selection with clipboard" })
