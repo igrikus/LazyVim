@@ -14,6 +14,9 @@ return {
 
       -- HashiCorp
       "hclfmt",
+
+      -- Java
+      "checkstyle",
     })
   end,
 }
