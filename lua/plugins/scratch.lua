@@ -11,12 +11,28 @@ return {
       "go",
       "lua",
       "js",
+      "java",
       "py",
       "sh",
       "ps1",
       "json",
       "yaml",
       "txt",
+    },
+    filetype_details = {
+      java = {
+        content = {
+          "class Scratch {",
+          "   public static void main(String []args) {",
+          "       ",
+          "   }",
+          "}",
+        },
+        cursor = {
+          location = { 3, 6 },
+          insert_mode = false,
+        },
+      },
     },
   },
 }
