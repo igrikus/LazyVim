@@ -11,6 +11,11 @@ return {
             },
           },
         }
+        opts.handlers = {
+          ["$/progress"] = function(_)
+            -- disable progress updates.
+          end,
+        }
         return opts
       end,
     },
