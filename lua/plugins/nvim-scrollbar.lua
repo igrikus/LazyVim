@@ -14,6 +14,7 @@ return {
       Hint = { color = colors.hint },
       Misc = { color = colors.purple },
     },
+    hide_if_all_visible = true,
     handlers = {
       gitsigns = true,
     },
