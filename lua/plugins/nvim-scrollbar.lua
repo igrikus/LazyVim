@@ -2,6 +2,7 @@ local colors = require("tokyonight.colors").setup()
 
 return {
   "petertriho/nvim-scrollbar",
+  dependencies = { "kevinhwang91/nvim-hlslens" },
   opts = {
     handle = {
       color = colors.bg_highlight,
@@ -17,6 +18,7 @@ return {
     hide_if_all_visible = true,
     handlers = {
       gitsigns = true,
+      search = true,
     },
   },
 }
