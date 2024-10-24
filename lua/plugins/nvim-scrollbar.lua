@@ -16,6 +16,9 @@ return {
       Misc = { color = colors.purple },
     },
     hide_if_all_visible = true,
+    excluded_filetypes = {
+      "neo-tree",
+    },
     handlers = {
       gitsigns = true,
       search = true,
