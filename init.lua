@@ -2,12 +2,16 @@
 require("config.lazy")
 
 vim.api.nvim_create_autocmd("VimEnter", {
-  desc = "Auto select virtualenv Nvim open",
+  desc = "Auto select virtualenv on Nvim open",
   pattern = "*",
   callback = function()
-    local venv = vim.fn.finddir("venv", vim.fn.getcwd())
-    if venv ~= "" then
-      require("venv-selector").retrieve_from_cache()
+    local venv_paths = { "venv", ".venv", "env", ".env" }
+    for _, path in ipairs(venv_paths) do
+      local venv = vim.fn.finddir(path, vim.fn.getcwd())
+      if venv ~= "" then
+        require("venv-selector").retrieve_from_cache()
+        break
+      end
     end
   end,
   once = true,
