@@ -2,7 +2,6 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-vim.keymap.del("t", "<C-l>") -- Clear terminal with Ctrl+l
 vim.keymap.del("n", "<C-_>") -- Disable built-in terminal
 
 vim.keymap.set({ "n", "v" }, "x", '"_x') -- Don't yank when cutting
