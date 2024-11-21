@@ -3,6 +3,7 @@
 -- Add any additional keymaps here
 
 vim.keymap.del("n", "<C-_>") -- Disable built-in terminal
+vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]])
 
 vim.keymap.set({ "n", "v" }, "x", '"_x') -- Don't yank when cutting
 
