@@ -11,6 +11,15 @@ return {
           },
         },
       },
+      yamlls = {
+        settings = {
+          yaml = {
+            format = {
+              enable = false,
+            },
+          },
+        },
+      },
     },
   },
 }
