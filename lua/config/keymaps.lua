@@ -15,24 +15,14 @@ vim.keymap.set({ "n", "v" }, "C", '"_C')
 
 local function compare_to_clipboard()
   local ftype = vim.api.nvim_eval("&filetype")
-  vim.cmd(string.format(
-    [[
-    execute "normal! \"xy"
-    vsplit
-    enew
-    normal! P
-    setlocal buftype=nowrite
-    set filetype=%s
-    diffthis
-    execute "normal! \<C-w>\<C-w>"
-    enew
-    set filetype=%s
-    normal! "xP
-    diffthis
-  ]],
-    ftype,
-    ftype
-  ))
+  vim.cmd("vsplit")
+  vim.cmd("enew")
+  vim.cmd("normal! P")
+  vim.cmd("setlocal buftype=nowrite")
+  vim.cmd("set filetype=" .. ftype)
+  vim.cmd("diffthis")
+  vim.cmd([[execute "normal! \<C-w>h"]])
+  vim.cmd("diffthis")
 end
 
 vim.keymap.set("x", "<Space>cc", compare_to_clipboard, { desc = "Compare selection with clipboard" })
