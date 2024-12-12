@@ -13,6 +13,9 @@ vim.keymap.set({ "n", "v" }, "D", '"_D')
 vim.keymap.set({ "n", "v" }, "c", '"_c') -- Don't yank when changing
 vim.keymap.set({ "n", "v" }, "C", '"_C')
 
+vim.keymap.set("n", "Q", "q", { noremap = true }) -- Change record key
+vim.keymap.set("n", "q", "<Nop>", { noremap = true })
+
 local function compare_to_clipboard()
   local ftype = vim.api.nvim_eval("&filetype")
   vim.cmd("vsplit")
