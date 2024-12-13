@@ -3,3 +3,4 @@
 -- Add any additional options here
 
 vim.opt.spelllang = { "en", "ru_ru" }
+vim.g.root_lsp_ignore = { "vtsls" }
