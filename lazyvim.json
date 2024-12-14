@@ -1,8 +1,4 @@
 {
-  "extras": [
-    "lazyvim.plugins.extras.ai.copilot",
-    "lazyvim.plugins.extras.lang.json"
-  ],
   "news": {
     "NEWS.md": "7429"
   },
