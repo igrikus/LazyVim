@@ -104,23 +104,38 @@ return {
           }
 
           local choices = {
-            "1. Absolute path: " .. results[1],
-            "2. Path relative to CWD: " .. results[2],
-            "3. Path relative to HOME: " .. results[3],
-            "4. Filename: " .. results[4],
-            "5. Directory: " .. results[5],
+            "Absolute path: " .. results[1],
+            "Path relative to CWD: " .. results[2],
+            "Path relative to HOME: " .. results[3],
+            "Filename: " .. results[4],
+            "Directory: " .. results[5],
           }
 
           if git_file_url then
             table.insert(results, git_file_url)
-            table.insert(choices, "6. Git repo URL: " .. git_file_url)
+            table.insert(choices, "Git repo URL: " .. git_file_url)
           end
 
           vim.ui.select(choices, { prompt = "Choose to copy to clipboard:" }, function(choice)
-            local i = tonumber(choice:sub(1, 1))
-            local result = results[i]
-            vim.fn.setreg("+", result)
-            vim.notify("Copied: " .. result)
+            if not choice then
+              return
+            end -- Handle case where selection is cancelled
+
+            -- Find the index of the choice in the choices table
+            for i, possible_choice in ipairs(choices) do
+              if choice == possible_choice then
+                local result = results[i]
+                if result then
+                  vim.fn.setreg("+", result)
+                  vim.notify("Copied: " .. result)
+                else
+                  vim.notify("No result found", vim.log.levels.WARN)
+                end
+                return
+              end
+            end
+
+            vim.notify("Selection not found", vim.log.levels.WARN)
           end)
         end,
       },
