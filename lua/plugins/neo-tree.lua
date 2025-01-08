@@ -9,10 +9,12 @@ return {
       bind_to_cwd = true,
       filtered_items = {
         hide_dotfiles = false,
+        hide_by_name = {
+          ".terraform.lock.hcl",
+        },
         never_show = {
           ".git",
           ".idea",
-          ".terraform.lock.hcl",
         },
         always_show_by_pattern = { -- uses glob style patterns
           "*.env",
