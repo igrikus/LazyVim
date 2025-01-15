@@ -6,7 +6,6 @@ return {
     { "<M-C-o>", "<cmd>ScratchOpen<cr>", desc = "Open scratch file" },
   },
   opts = {
-    file_picker = "telescope",
     filetypes = {
       "xml",
       "go",
