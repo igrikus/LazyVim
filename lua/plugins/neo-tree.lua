@@ -16,6 +16,9 @@ return {
           ".git",
           ".idea",
         },
+        always_show = {
+          "nocommit",
+        },
         always_show_by_pattern = { -- uses glob style patterns
           "*.env",
           "*.tfvars",
