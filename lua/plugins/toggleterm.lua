@@ -3,6 +3,6 @@ return {
   version = "*",
   opts = {
     open_mapping = [[<c-\>]],
-    direction = "tab",
+    direction = "float",
   },
 }
