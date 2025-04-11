@@ -1,26 +1,40 @@
 return {
-  {
-    "mfussenegger/nvim-jdtls",
-    opts = {
-      jdtls = function(opts)
-        opts.root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml" })
-        vim.list_extend(opts.cmd, {
-          "-Xmx4g",
-        })
-        opts.settings = {
-          java = {
-            format = {
-              enabled = false,
+  "nvim-java/nvim-java",
+  config = false,
+  dependencies = {
+    {
+      "neovim/nvim-lspconfig",
+      opts = {
+        servers = {
+          jdtls = {
+            settings = {
+              java = {
+                format = {
+                  enabled = true,
+                },
+              },
             },
           },
-        }
-        opts.handlers = {
-          ["$/progress"] = function(_)
-            -- disable progress updates.
+        },
+        setup = {
+          jdtls = function()
+            require("java").setup({
+              java_test = {
+                enable = false,
+              },
+              java_debug_adapter = {
+                enable = false,
+              },
+              spring_boot_tools = {
+                enable = false,
+              },
+              notifications = {
+                dap = false,
+              },
+            })
           end,
-        }
-        return opts
-      end,
+        },
+      },
     },
   },
 }
