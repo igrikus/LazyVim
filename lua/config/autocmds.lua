@@ -9,3 +9,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.shiftwidth = 4
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "csv" },
+  callback = function()
+    require("csvview").toggle()
+  end,
+})
