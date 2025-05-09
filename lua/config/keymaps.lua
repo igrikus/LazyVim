@@ -28,4 +28,4 @@ local function compare_to_clipboard()
   vim.cmd("diffthis")
 end
 
-vim.keymap.set("x", "<Space>cc", compare_to_clipboard, { desc = "Compare selection with clipboard" })
+vim.keymap.set("v", "<Space>cs", compare_to_clipboard, { desc = "Compare selection with clipboard" })
