@@ -5,8 +5,6 @@ return {
     vim.list_extend(opts.ensure_installed, {
       -- Justfile
       "just",
-
-      "java",
     })
   end,
 }
