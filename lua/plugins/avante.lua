@@ -7,7 +7,7 @@ return {
       "ibhagwan/fzf-lua",
     },
     opts = {
-      hints = { enabled = true },
+      hints = { enabled = false },
 
       ---@alias AvanteProvider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
       provider = "gemini",
@@ -21,6 +21,9 @@ return {
       file_selector = {
         provider = "fzf", -- Avoid native provider issues
         provider_opts = {},
+        exclude_auto_select = {
+          "tfvars",
+        },
       },
     },
     build = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
