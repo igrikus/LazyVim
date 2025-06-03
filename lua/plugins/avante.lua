@@ -12,9 +12,10 @@ return {
       ---@alias AvanteProvider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
       provider = "gemini",
       auto_suggestions_provider = "gemini",
-      gemini = {
-        api_key_name = "cmd: cat " .. vim.fn.expand("$HOME/.gemini/key"),
-        model = "gemini-2.5-pro-exp-03-25",
+      providers = {
+        gemini = {
+          api_key_name = "cmd: cat " .. vim.fn.expand("$HOME/.gemini/key"),
+        },
       },
       -- File selector configuration
       --- @alias FileSelectorProvider "native" | "fzf" | "mini.pick" | "snacks" | "telescope" | string
