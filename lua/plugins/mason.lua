@@ -17,6 +17,9 @@ return {
 
       -- Java
       "checkstyle",
+
+      -- Grammar
+      "harper-ls",
     })
   end,
 }

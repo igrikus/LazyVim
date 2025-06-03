@@ -20,6 +20,15 @@ return {
           },
         },
       },
+      harper_ls = {
+        settings = {
+          ["harper-ls"] = {
+            codeActions = {
+              forceStable = true,
+            },
+          },
+        },
+      },
     },
   },
 }
