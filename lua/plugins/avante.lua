@@ -1,3 +1,6 @@
+vim.env.GOOGLE_SEARCH_ENGINE_ID = vim.fn.expand("$HOME/.gemini/search_engine_id")
+vim.env.GOOGLE_SEARCH_API_KEY = vim.fn.expand("$HOME/.gemini/search_api_key")
+
 return {
   {
     "yetone/avante.nvim",
@@ -15,7 +18,11 @@ return {
       providers = {
         gemini = {
           api_key_name = "cmd: cat " .. vim.fn.expand("$HOME/.gemini/key"),
+          model = "gemini-2.5-flash-preview-05-20",
         },
+      },
+      web_search_engine = {
+        provider = "google",
       },
       -- File selector configuration
       --- @alias FileSelectorProvider "native" | "fzf" | "mini.pick" | "snacks" | "telescope" | string
