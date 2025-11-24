@@ -1,4 +1,5 @@
 return {
+  enabled = true,
   "zbirenbaum/copilot.lua",
   opts = {
     filetypes = {
