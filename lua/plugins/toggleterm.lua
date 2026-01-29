@@ -10,7 +10,7 @@ return {
     local Terminal = require("toggleterm.terminal").Terminal
 
     local gemini = Terminal:new({
-      cmd = "bash -ic gemini",
+      cmd = "gemini",
       dir = vim.fn.getcwd(),
       direction = "float",
       hidden = true,
