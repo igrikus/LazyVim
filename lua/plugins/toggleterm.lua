@@ -9,8 +9,8 @@ return {
     require("toggleterm").setup(opts)
     local Terminal = require("toggleterm.terminal").Terminal
 
-    local gemini = Terminal:new({
-      cmd = "gemini",
+    local opencode = Terminal:new({
+      cmd = "opencode",
       dir = vim.fn.getcwd(),
       direction = "float",
       hidden = true,
@@ -22,10 +22,10 @@ return {
       end,
     })
 
-    function _G.toggle_gemini()
-      gemini:toggle()
+    function _G.toggle_opencode()
+      opencode:toggle()
     end
 
-    vim.keymap.set("n", "<leader>aa", "<cmd>lua _G.toggle_gemini()<CR>", { desc = "Toggle gemini terminal" })
+    vim.keymap.set("n", "<leader>aa", "<cmd>lua _G.toggle_opencode()<CR>", { desc = "Toggle opencode terminal" })
   end,
 }
