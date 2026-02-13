@@ -4,6 +4,7 @@ return {
   opts = {
     open_mapping = [[<c-\>]],
     direction = "float",
+    auto_scroll = false,
   },
   config = function(_, opts)
     require("toggleterm").setup(opts)
@@ -15,7 +16,6 @@ return {
       direction = "float",
       hidden = true,
       count = 9,
-      auto_scroll = false,
       on_open = function(term)
         vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<C-\\>", "<cmd>close<CR>", { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<C-\\>", "<cmd>close<CR>", { noremap = true, silent = true })
