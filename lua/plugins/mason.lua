@@ -16,6 +16,7 @@ return {
       "hclfmt",
 
       -- Java
+      "jdtls",
       "checkstyle",
     })
   end,
