@@ -11,7 +11,7 @@ return {
     local Terminal = require("toggleterm.terminal").Terminal
 
     local opencode = Terminal:new({
-      cmd = "opencode",
+      cmd = "OPENCODE_EXPERIMENTAL_PLAN_MODE=true opencode",
       dir = vim.fn.getcwd(),
       direction = "float",
       hidden = true,
