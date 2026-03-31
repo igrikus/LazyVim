@@ -18,6 +18,7 @@ return {
       "json",
       "yaml",
       "txt",
+      "md",
     },
     filetype_details = {
       java = {
