@@ -63,5 +63,23 @@ return {
     end
 
     vim.keymap.set("n", "<leader>ag", "<cmd>lua _G.toggle_gemini()<CR>", { desc = "Toggle gemini terminal" })
+
+    local codex = Terminal:new({
+      cmd = "codex",
+      dir = vim.fn.getcwd(),
+      direction = "float",
+      hidden = true,
+      count = 9,
+      on_open = function(term)
+        vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<C-\\>", "<cmd>close<CR>", { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<C-\\>", "<cmd>close<CR>", { noremap = true, silent = true })
+      end,
+    })
+
+    function _G.toggle_codex()
+      codex:toggle()
+    end
+
+    vim.keymap.set("n", "<leader>ac", "<cmd>lua _G.toggle_codex()<CR>", { desc = "Toggle codex terminal" })
   end,
 }
