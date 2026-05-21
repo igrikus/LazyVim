@@ -111,7 +111,11 @@ return {
               repo_url = repo_url:gsub(":%d+/", "/") -- Remove the port number
             end
             repo_url = repo_url:gsub("%.git$", "") -- Remove .git suffix if exists
-            return string.format("%s/blob/%s/%s", repo_url, branch, file_path)
+            -- GitHub uses /blob/<branch>/, Gitea uses /src/branch/<branch>/
+            if repo_url:match("github%.com") then
+              return string.format("%s/blob/%s/%s", repo_url, branch, file_path)
+            end
+            return string.format("%s/src/branch/%s/%s", repo_url, branch, file_path)
           end
 
           -- Determine if we can get Git information
