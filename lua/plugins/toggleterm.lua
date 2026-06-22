@@ -46,8 +46,8 @@ return {
 
     vim.keymap.set("n", "<leader>ai", "<cmd>lua _G.toggle_claude()<CR>", { desc = "Toggle claude terminal" })
 
-    local gemini = Terminal:new({
-      cmd = "gemini --yolo",
+    local antigravity = Terminal:new({
+      cmd = "agy --dangerously-skip-permissions",
       dir = vim.fn.getcwd(),
       direction = "float",
       hidden = true,
@@ -58,11 +58,11 @@ return {
       end,
     })
 
-    function _G.toggle_gemini()
-      gemini:toggle()
+    function _G.toggle_antigravity()
+      antigravity:toggle()
     end
 
-    vim.keymap.set("n", "<leader>ag", "<cmd>lua _G.toggle_gemini()<CR>", { desc = "Toggle gemini terminal" })
+    vim.keymap.set("n", "<leader>ag", "<cmd>lua _G.toggle_antigravity()<CR>", { desc = "Toggle antigravity terminal" })
 
     local codex = Terminal:new({
       cmd = "codex",
